@@ -232,7 +232,7 @@
 
       var complete = function () {
         var prevHoverState = that.hoverState
-        that.$element.trigger('shown.bs.' + that.type)
+        that.$element?.trigger('shown.bs.' + that.type)
         that.hoverState = null
 
         if (prevHoverState == 'out') that.leave(that)
@@ -476,6 +476,7 @@
     var that = this
     clearTimeout(this.timeout)
     this.hide(function () {
+      if (!that.$element) return
       that.$element.off('.' + that.type).removeData('bs.' + that.type)
       if (that.$tip) {
         that.$tip.detach()
